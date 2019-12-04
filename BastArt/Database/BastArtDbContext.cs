@@ -10,7 +10,12 @@ namespace BastArt.Database
     public class BastArtDbContext: DbContext
     {
         public DbSet<User> Users { get; set; }
-        public DbSet<Cart> Carts { get; set; }
+        public DbSet<Account> Accounts { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+        public DbSet<Graphic> Graphics { get; set; }
+        public DbSet<Portfolio> Portfolios { get; set; }  
+        public DbSet<Role> Roles { get; set; }
+
 
         public BastArtDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
         {

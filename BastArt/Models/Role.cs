@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace BastArt.Models
 {
-    public class Cart
+    public class Role
     {
         public int Id { get; set; }
-
-        public List<string> Items { get; set; }
+        public User User { get; set; }
+        public string RoleType { get; set; }
     }
 }
