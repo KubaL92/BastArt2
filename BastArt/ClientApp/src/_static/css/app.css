@@ -1,0 +1,11 @@
+body
+{
+    background-image: url("../images/layout-bg.jpg");
+    background-size: cover;
+    height: 100%;
+}
+
+.navbar
+{
+    background-color: rgb(27, 26, 26) ;
+}

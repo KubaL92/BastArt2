@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Container } from 'reactstrap';
+import Header from './layout/Header';
+import Footer from './layout/Footer';
 
 export class Layout extends Component {
   static displayName = Layout.name;
@@ -7,9 +8,11 @@ export class Layout extends Component {
   render () {
     return (
       	<div id="app-wrapper">
+          <Header />
         	<div id="content-wrapper">
           		{this.props.children}
           	</div>
+          <Footer />
       	</div>
     );
   }
