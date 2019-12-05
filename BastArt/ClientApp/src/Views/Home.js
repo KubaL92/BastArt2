@@ -1,46 +1,16 @@
 import React, { Component } from 'react';
 import NavBar from '../_components/home/NavBar';
+import ArtworksScreen from '../_components/home/ArtworksScreen';
+import '../_static/css/home.css';
 
 export class Home extends Component {
   static displayName = Home.name;
 
   render () {
     return (
-		<div id="home-page">
-      <div className="container">
-        <NavBar />
-      </div>
-			<h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      {/* <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      v
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1>
-      <h1>Hello, world!</h1> */}
+		<div id="home-page" className="container">
+			<NavBar />
+			<ArtworksScreen />
 		</div>
     );
   }
