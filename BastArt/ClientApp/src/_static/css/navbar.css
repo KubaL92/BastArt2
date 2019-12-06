@@ -1,5 +1,7 @@
-.navbar
-{
-    margin-top: 20px;
-    position: fixed;
-}
+    .navbar-nav {
+        float: none;
+        margin: 0 auto;
+        display: table;
+        table-layout: fixed;
+        
+    }
