@@ -20,7 +20,7 @@ namespace BastArt.Controllers
         }
 
 
-
+         // yoloooo
         [HttpPost("login")]
         public ActionResult<User> Login([FromBody] LoginViewModel model)
         {
