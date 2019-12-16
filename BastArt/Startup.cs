@@ -1,12 +1,18 @@
+using System;
+using System.Text;
 using BastArt.Database;
+using BastArt.Services;
+using BastArt.Services.Abstraction;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BastArt
 {
@@ -31,6 +37,74 @@ namespace BastArt
 
             services.AddDbContext<BastArtDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DbConnString")));
+
+            var symmetricSecurityKey =
+    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:SecretKey"]));
+
+            var tokenValidationParameters = new TokenValidationParameters()
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateIssuerSigningKey = true,
+                ValidateLifetime = true,
+                LifetimeValidator = (before, expires, token, parameters) =>
+                {
+                    //If expiration has a date, add 2 days to it
+                    if (expires.HasValue)
+                        return expires.Value.AddHours(1) > DateTime.Now;
+
+                    return false;
+
+                },
+                ValidAudience = Configuration["Jwt:Site"],
+                ValidIssuer = Configuration["Jwt:Site"],
+                IssuerSigningKey = symmetricSecurityKey
+            };
+            //
+            //            services.AddIdentity<User, IdentityRole>()
+            //                .AddEntityFrameworkStores<ApplicationDbContext>()
+            //                .AddDefaultTokenProviders();
+
+            services.AddAuthentication(option =>
+            {
+                option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                option.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options => {
+                options.SaveToken = true;
+                options.RequireHttpsMetadata = true;
+                options.TokenValidationParameters = tokenValidationParameters;
+            });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Bearer", policy =>
+                {
+                    policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
+                    policy.RequireAuthenticatedUser().Build();
+                });
+
+                options.AddPolicy("User", policy =>
+                {
+                    policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
+                    policy.RequireAuthenticatedUser().RequireRole("User").Build();
+                });
+            });
+
+
+            services.AddMvc(option => option.EnableEndpointRouting = false)
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
+
+            //adding parameters for authService constructor
+            services.AddSingleton<IAuthService>(
+                new AuthService(
+                    jwtSecret: Configuration["JWT:SecretKey"],
+                    jwtLifespan: Convert.ToInt32(Configuration["JWT:Lifespan"]),
+                    configuration: Configuration,
+                    tokenValidationParameters: tokenValidationParameters
+                )
+            );
         }
     
 
@@ -52,8 +126,17 @@ namespace BastArt
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
-            app.UseRouting();
+            app.UseCors(builder => builder.WithOrigins("https://localhost:44356")
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowAnyOrigin());
 
+
+
+            app.UseAuthorization();
+            app.UseAuthentication();
+
+            app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -70,6 +153,8 @@ namespace BastArt
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+
+            app.UseMvc();
         }
     }
 }

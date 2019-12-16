@@ -2,6 +2,7 @@
 using BastArt.Database;
 using BastArt.Models;
 using BastArt.Models.View;
+using BastArt.Services.Abstraction;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,13 +10,12 @@ namespace BastArt.Controllers
 {
     public class AuthorizationController : Controller
     {
-//        private readonly IAuthService _authService;
         private readonly BastArtDbContext _context;
+        private readonly IAuthService _authService;
 
-        public AuthorizationController(BastArtDbContext context)
+        public AuthorizationController(BastArtDbContext context, IAuthService authService)
         {
-//            IAuthService authService,
-            //            _authService = authService;
+            _authService =  authService;
             _context = context;
         }
 
@@ -35,19 +35,19 @@ namespace BastArt.Controllers
             if (account == null)
                 return NotFound(new { message = "Email or Password is Wrong" });
 
-//            var passwordValid = _authService.VerifyPassword(model.Password, account.Password);
-            var passwordValid = account.Password == model.Password;
+            var passwordValid = _authService.VerifyPassword(model.Password, account.Password);
             if (!passwordValid)
             {
                 return NotFound(new { message = "Email or Password is Wrong" });
             }
 
-//            var token = _authService.GetToken(account.Owner.Id);
-            var userRole = _context.
-                            Roles.
-                            SingleOrDefaultAsync(role => role.User.Id == account.User.Id).Result;
+            var role = _context.Roles.SingleOrDefault(r => r.User.Id == account.User.Id);
+            if (role == null)
+                return NotFound(new { message = "Role not found" });
 
-            return Ok(new {user = account.User, role = userRole.RoleType });
+            var token = _authService.GetToken(role);
+
+            return Ok(new {user = account.User, token, role = role.RoleType });
         }
 
 
@@ -62,19 +62,28 @@ namespace BastArt.Controllers
 
             var user = new User
             {
-                Name = model.Name,
-                Surname = model.Surname,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
                 Email = model.Email
 
             };
+
+            var role = new Role
+            {
+                User = user,
+                RoleType = "User",
+
+            };
+
             var account = new Account
             {
-                Owner = user,
+                User = user,
                 Email = model.Email,
                 Password = _authService.HashPassword(model.Password)
             };
 
             _context.Users.Add(user);
+            _context.Roles.Add(role);
             _context.Accounts.Add(account);
             _context.SaveChanges();
 

@@ -58,12 +58,13 @@ a:hover
 }
 
 .image-element img {
-    transition: transform .2s ease-in-out;
+    transition: transform .4s ease-in-out,  filter .4s ease-in;
 }
 
 .image-element img:hover
 {
-  filter: sepia(50%) brightness(110%);
+  filter: sepia(80%) brightness(110%) blur(2px);
+  -webkit-filter: sepia(80%) brightness(110%) blur(2px);
   transform: scale(1.05);
 }
 
