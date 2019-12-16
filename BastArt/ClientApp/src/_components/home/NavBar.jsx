@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 //import '../../_static/css/navbar.css';
+import { Link } from 'react-router-dom';
 
 class NavBar extends Component{
     render(){
@@ -7,6 +8,8 @@ class NavBar extends Component{
             <nav className="navbar sticky-top navbar-expand-lg navbar-dark" id="navig">
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div className="navbar-nav" id="nav-buttons">
+                        <Link to={'/login'}>chuj</Link>
+                        <Link to={'/register'}>chuj2</Link>
                         <button className="ml-4 nav-item nav-link">Home</button>
                         <button className="ml-4 nav-item nav-link">Tutorial</button>
                         <button className="ml-4 nav-item nav-link">Artworks</button>

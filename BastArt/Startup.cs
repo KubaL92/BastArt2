@@ -60,10 +60,6 @@ namespace BastArt
                 ValidIssuer = Configuration["Jwt:Site"],
                 IssuerSigningKey = symmetricSecurityKey
             };
-            //
-            //            services.AddIdentity<User, IdentityRole>()
-            //                .AddEntityFrameworkStores<ApplicationDbContext>()
-            //                .AddDefaultTokenProviders();
 
             services.AddAuthentication(option =>
             {
@@ -82,12 +78,6 @@ namespace BastArt
                 {
                     policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
                     policy.RequireAuthenticatedUser().Build();
-                });
-
-                options.AddPolicy("User", policy =>
-                {
-                    policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
-                    policy.RequireAuthenticatedUser().RequireRole("User").Build();
                 });
             });
 
@@ -126,7 +116,7 @@ namespace BastArt
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
-            app.UseCors(builder => builder.WithOrigins("https://localhost:44356")
+            app.UseCors(builder => builder.WithOrigins("https://localhost:44334")
                 .AllowAnyMethod()
                 .AllowAnyHeader()
                 .AllowAnyOrigin());

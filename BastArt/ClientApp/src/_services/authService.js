@@ -15,20 +15,20 @@ async function login(accountData) {
             },
         body: JSON.stringify(accountData)
     };
-    
-    return fetch(`https://localhost:44356/api/authorization/login`, requestOptions)
+
+    return fetch(`https://localhost:44334/api/authorization/login`, requestOptions)
         .then(res => res.json())
         .then(resJson => {
-            if(resJson.token !== undefined){
+            // if(resJson.token !== undefined){
                 console.log(resJson);
                 // console.log(resJson, "I'am in authService");
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 sessionStorage.setItem('token', resJson.token);
                 sessionStorage.setItem('currentUser', resJson.user)
                 // store.dispatch(userStore.add(resJson.owner));
-            }
+            // }
         })
-        .then(setTimeout(function(){
-            history.push('/')}, 500))
+        // .then(setTimeout(function(){
+        //     history.push('/')}, 500))
         .catch(error => console.log(error));
 }

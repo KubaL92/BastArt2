@@ -43,7 +43,7 @@ class Register extends Component {
         }
 
 
-        fetch("https://localhost:44356/api/authorization/register",
+        fetch("https://localhost:44334/api/authorization/register",
             {
                 method: 'post',
                 headers: {

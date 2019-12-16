@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BastArt.Controllers
 {
+    [Route("api/[controller]")]
     public class AuthorizationController : Controller
     {
         private readonly BastArtDbContext _context;
@@ -19,8 +20,6 @@ namespace BastArt.Controllers
             _context = context;
         }
 
-
-         // yoloooo
         [HttpPost("login")]
         public ActionResult<User> Login([FromBody] LoginViewModel model)
         {
