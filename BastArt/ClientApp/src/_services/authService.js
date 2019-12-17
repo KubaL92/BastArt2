@@ -1,4 +1,6 @@
-import history from './history'
+import history from './history';
+import { userActions } from '../_redux/user/duck';
+import store from '../_redux/store'
 
 export const authService = {
     login
@@ -19,16 +21,13 @@ async function login(accountData) {
     return fetch(`https://localhost:44334/api/authorization/login`, requestOptions)
         .then(res => res.json())
         .then(resJson => {
-            // if(resJson.token !== undefined){
-                console.log(resJson);
-                // console.log(resJson, "I'am in authService");
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                sessionStorage.setItem('token', resJson.token);
-                sessionStorage.setItem('currentUser', resJson.user)
-                // store.dispatch(userStore.add(resJson.owner));
-            // }
+            // store token in session to keep user logged in between page refreshes
+            sessionStorage.setItem('token', resJson.token);
+
+            store.dispatch(userActions.addRole(resJson.role));
+            store.dispatch(userActions.add(resJson.user));
         })
-        // .then(setTimeout(function(){
-        //     history.push('/')}, 500))
+        .then(setTimeout(function(){
+            history.push('/')}, 500))
         .catch(error => console.log(error));
 }
