@@ -3,7 +3,7 @@
 class About extends Component {
     render() {
         return (
-            <div className="screen">
+            <div className="screen" id = "about-screen">
 
                 <h3> About Us </h3>
                 <br />

@@ -3,7 +3,7 @@
 class Home extends Component {
     render() {
         return (
-            <div className="screen">
+            <div className="screen" id = "home-screen">
                 <h5> Welcome to CraftArt, the website where you can cooperate with graphic designers from all over the world to create everything that you wish for.
                 <br />
                 <br />

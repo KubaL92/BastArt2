@@ -9,7 +9,7 @@ export class Layout extends Component {
     return (
       	<div id="app-wrapper">
           <Header />
-        	<div id="content-wrapper">
+            <div id="content-wrapper" className="container">
           		{this.props.children}
           	</div>
           <Footer />

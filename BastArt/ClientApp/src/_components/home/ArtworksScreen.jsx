@@ -19,7 +19,7 @@ class ArtworksScreen extends Component{
          });
 
         return(
-            <div className="screen container">
+            <div className="screen container" id = "artworks-screen">
                 <span><h2 className="text-justify">Sample Artworks</h2></span>
                 <Masonry
                     className={'my-gallery-class'} // default ''

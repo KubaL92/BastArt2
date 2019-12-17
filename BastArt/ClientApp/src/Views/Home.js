@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link, animateScroll as scroll } from "react-scroll";
 import NavBar from '../_components/home/NavBar';
 import ArtworksScreen from '../_components/home/ArtworksScreen';
 import HomeScreen from '../_components/home/HomeScreen';
@@ -11,7 +12,7 @@ export class Home extends Component {
 
   render () {
     return (
-		<div id="home-page" className="container">
+		<div id="home-page">
             <NavBar />
             <HomeScreen />
             <ArtworksScreen />

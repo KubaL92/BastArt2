@@ -3,7 +3,7 @@
 class Tutorial extends Component {
     render() {
         return (
-            <div className="screen">
+            <div className="screen" id = "tutorial-screen">
 
                 <h3> 
                     Tutorial

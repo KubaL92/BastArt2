@@ -11,6 +11,15 @@ class Header extends Component{
                         <big>BastArt</big>
                     {/* </Link> */}
                 </a>
+                <div class="btn-group dropleft">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Menu
+                             </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href={'/login'}>Login</a>
+                        <a class="dropdown-item" href={'/register'}>Register</a>
+                    </div>
+                 </div>
             </nav>
         )
     }

@@ -6,6 +6,7 @@ class Register extends Component {
 
     render() {
         return (
+            <div className = "screen">
             <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="username">Name</label>
@@ -28,7 +29,8 @@ class Register extends Component {
                     </small>
                 </div>
                 <button type="submit" className="btn btn-primary">Create account</button>
-            </form>
+                </form>
+            </div>
         );
     }
 
@@ -54,6 +56,7 @@ class Register extends Component {
         )
             .then(history.push("/account/login"))
             .catch(error => console.log(error));
+            
     }
 
 
