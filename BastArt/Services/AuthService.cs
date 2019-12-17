@@ -39,7 +39,8 @@ namespace BastArt.Services
             var claims = new List<Claim>
             {
                 new Claim("Id", Convert.ToString(role.User.Id)),
-                new Claim("Name", role.User.FirstName),
+                new Claim("Username", role.User.Username),
+                new Claim("FirstName", role.User.FirstName),
                 new Claim("LastName", role.User.LastName),
                 new Claim("Email", role.User.Email),
                 new Claim("Role", role.RoleType)

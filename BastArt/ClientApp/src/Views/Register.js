@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
-import history from '../_services/history';
+import { authService } from '../_services/authService';
+import { isConstructorDeclaration } from 'typescript';
 
 
 class Register extends Component {
@@ -8,23 +9,27 @@ class Register extends Component {
         return (
             <div className = "screen">
             <form onSubmit={this.handleSubmit}>
+            <div className="form-group">
+                    <label htmlFor="username">Username</label>
+                    <input name="username" type="text" className="form-control" id="username" placeholder="Username" />
+                </div>
                 <div className="form-group">
                     <label htmlFor="username">Name</label>
-                    <input name="name" type="username" className="form-control" id="username" placeholder="Name" />
+                    <input name="name" type="text" className="form-control" id="username" placeholder="Name" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="surname">Surname</label>
-                    <input name="surname" type="surname" className="form-control" id="surname" placeholder="Surname" />
+                    <input name="surname" type="text" className="form-control" id="surname" placeholder="Surname" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="email">Email address</label>
-                    <input name="email" type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Email" />
-                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <input name="email" type="email" className="form-control" id="email" placeholder="Email" />
+                    <small className="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
                     <input name="password" type="password" className="form-control" id="password" placeholder="Password" />
-                    <small id="emailHelp" className="form-text text-muted">
+                    <small className="form-text text-muted">
                         Password should contain at least: 8 signs, one upper case letter, one lower case letter, one digit
                     </small>
                 </div>
@@ -34,33 +39,19 @@ class Register extends Component {
         );
     }
 
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
-        const user = {
+        const userData = {
+            Username: data.get("username"),
             FirstName: data.get("name"),
             LastName: data.get("surname"),
             Email: data.get("email"),
             Password: data.get("password")
-        }
-
-
-        fetch("https://localhost:44334/api/authorization/register",
-            {
-                method: 'post',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(user)
-            }
-        )
-            .then(history.push("/account/login"))
-            .catch(error => console.log(error));
-            
+        };
+        const response = await authService.register(userData);
+        console.log(response);
     }
-
-
-
 }
 
 export default Register;

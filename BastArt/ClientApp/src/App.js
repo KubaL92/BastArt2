@@ -6,9 +6,16 @@ import Login from './Views/Login';
 import Register from './Views/Register';
 
 import './_static/css/app.css';
+import { authService } from './_services/authService';
 
 export default class App extends Component {
     static displayName = App.name;
+
+    componentWillMount() {
+		if(sessionStorage.token !== undefined){
+            authService.loginByToken();
+		}
+  	}
 
     render () {
         return (

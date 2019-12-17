@@ -21,17 +21,16 @@ class Login extends Component {
         );
     }
 
-    handleLogin = (event) =>{
+    handleLogin = async (event) =>{
         event.preventDefault();
         const data = new FormData(event.target);
 
         const accountData = {
             Email: data.get("email"),
-                    Password: data.get("password")
+            Password: data.get("password")
             }
                 
-                authService.login(accountData);
-                
+        authService.login(accountData);
     }
                
 

@@ -32,7 +32,7 @@ namespace BastArt.Controllers
 
 
             if (account == null)
-                return NotFound(new { message = "Email or Password is Wrong" });
+                return NotFound(new { message = "Email or Password is Wrong" , error=true});
 
             var passwordValid = _authService.VerifyPassword(model.Password, account.Password);
             if (!passwordValid)
@@ -58,6 +58,9 @@ namespace BastArt.Controllers
 
             var emailUniq = _context.Accounts.SingleOrDefault(acc => acc.Email == model.Email);
             if (emailUniq != null) return BadRequest(new { email = "user with this email already exists" });
+
+            var userNameUniq = _context.Users.SingleOrDefault(acc => acc.Username == model.Username);
+            if (userNameUniq != null) return BadRequest(new { email = "Username already exists" });
 
             var user = new User
             {

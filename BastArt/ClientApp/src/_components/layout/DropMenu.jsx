@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
+import { authService } from '../../_services/authService';
 
 class DropMenu extends Component{
     render(){
@@ -18,7 +19,8 @@ class DropMenu extends Component{
                     </div>
                 :
                     <div className="dropdown-menu dropdown-menu-right">
-                        <small>Logged as: {currentUser.firstName}</small>
+                        <small style={{fontWeight: 500, fontSize: 14}} className="ml-2">Logged as: {currentUser.username}</small>
+                        <hr/>
                         <Link className="dropdown-item" to={'/'}>My Profile</Link>
                         <Link className="dropdown-item" to={'/'}>Start a project</Link>
                         <Link className="dropdown-item" to={'/'}>My orders</Link>
@@ -32,6 +34,8 @@ class DropMenu extends Component{
                                 <Link className="dropdown-item" to={'/'}>My projects</Link>
                             </React.Fragment>
                         }
+                        <hr/>
+                        <Link className="dropdown-item" onClick={authService.logout} to={'/'}>Logout</Link>
                     </div>
                 }
             </div>
