@@ -14,11 +14,6 @@ class Home extends Component {
     return (
       <div id="home-page" className="container">
           <NavBar />
-          {/* {this.props.currentUser !== null
-            ?<span>{this.props.currentUser.firstName}</span>
-            :
-            <React.Fragment/>
-          } */}
           <HomeScreen />
           <ArtworksScreen />
           <Tutorial />
@@ -28,8 +23,4 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-    currentUser: state.currentUser
-})
-
-export default connect(mapStateToProps, {})(Home);
+export default Home;
