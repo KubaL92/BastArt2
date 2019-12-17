@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route ,Switch} from 'react-router';
 import { Layout } from './_components/Layout';
-import { Home } from './Views/Home';
+import Home from './Views/Home';
 import Login from './Views/Login';
 import Register from './Views/Register';
 
