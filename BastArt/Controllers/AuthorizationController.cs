@@ -64,6 +64,7 @@ namespace BastArt.Controllers
 
             var user = new User
             {
+                Username = model.Username,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Email = model.Email
