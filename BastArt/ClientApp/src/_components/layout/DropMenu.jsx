@@ -30,7 +30,7 @@ class DropMenu extends Component{
                             <Link className="dropdown-item" to={'/'}>Become an aritst</Link>
                         :
                             <React.Fragment>
-                                <Link className="dropdown-item" to={'/'}>My portfolio</Link>
+                                <Link className="dropdown-item" to={`/portfolio/${currentUser.id}`}>My portfolio</Link>
                                 <Link className="dropdown-item" to={'/'}>My projects</Link>
                             </React.Fragment>
                         }

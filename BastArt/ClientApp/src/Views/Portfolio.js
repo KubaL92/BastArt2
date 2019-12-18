@@ -9,9 +9,9 @@ import {connect} from 'react-redux';
 
 class Portfolio extends Component {
     state={
-        portfoliosFetched: false,
+        portfolioFetched: false,
         owner: false,
-        portfolios: []
+        portfolio: []
     }
     
     componentDidMount() {
@@ -21,7 +21,7 @@ class Portfolio extends Component {
             if(id === currentUser.id)
             this.setState({owner: true});
         }
-        this.fetchPortfolios(id);
+        this.fetchPortfolio(id);
     }
     
 
@@ -30,15 +30,15 @@ class Portfolio extends Component {
             <React.Fragment>
                 <div className="screen">
                     
-                    {this.state.portfoliosFetched
-                        ?<ProfileHeader user={this.state.portfolios.user}/>
+                    {this.state.portfolioFetched
+                        ?<ProfileHeader user={this.state.portfolio.user}/>
                         :<p className="container">Loading...</p>
                     }
                 </div>
                 <div className="screen">
                     <Navigation />
-                    {this.state.portfoliosFetched
-                        ?<Artworks portfolios={this.state.portfolios}/>
+                    {this.state.portfolioFetched
+                        ?<Artworks graphics={this.state.portfolio.graphics}/>
                         :<p>Loading...</p>
                     }
                 </div>
@@ -46,9 +46,9 @@ class Portfolio extends Component {
         )
     }
 
-    fetchPortfolios = async (id) =>{
-        const portfolios = await getByUserId(id);
-        this.setState({portfolios, portfoliosFetched: true});
+    fetchPortfolio = async (id) =>{
+        const portfolio = await getByUserId(id);
+        this.setState({portfolio, portfolioFetched: true});
     } 
 }
 
