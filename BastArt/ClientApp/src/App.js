@@ -7,6 +7,7 @@ import Register from './Views/Register';
 
 import './_static/css/app.css';
 import { authService } from './_services/authService';
+import Portfolio from './Views/Portfolio';
 
 export default class App extends Component {
     static displayName = App.name;
@@ -24,6 +25,7 @@ export default class App extends Component {
                     <Route exact path='/' component={Home} />
                     <Route exact path='/login' component={Login} />
                     <Route exact path='/register' component={Register} />
+                    <Route exact path='/portfolio' component={Portfolio} />
                 </Switch>
             </Layout>
         );
