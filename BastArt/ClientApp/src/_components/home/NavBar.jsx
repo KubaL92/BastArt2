@@ -40,21 +40,6 @@ class NavBar extends Component{
                     </div>
                 </div>
             </nav>
-
-            // <ul class="nav justify-content-center navbar">
-            //     <li class="nav-item">
-            //         <a class="nav-link" href="#">Active</a>
-            //     </li>
-            //     <li class="nav-item">
-            //         <a class="nav-link" href="#">Link</a>
-            //     </li>
-            //     <li class="nav-item">
-            //         <a class="nav-link" href="#">Link</a>
-            //     </li>
-            //     <li class="nav-item">
-            //         <a class="nav-link disabled" href="#">Disabled</a>
-            //     </li>
-            // </ul>
         )
     }
 

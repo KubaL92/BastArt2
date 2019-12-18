@@ -9,6 +9,6 @@ namespace BastArt.Models
     {
         public int Id { get; set; }
         public User User { get; set; }
-        public Guid Guid { get; set; }
+        public string Base64Pic { get; set; }
     }
 }

@@ -3,15 +3,17 @@ using System;
 using BastArt.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BastArt.Migrations
 {
     [DbContext(typeof(BastArtDbContext))]
-    partial class BastArtDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191218155844_GuidTOLongString")]
+    partial class GuidTOLongString
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,8 +74,8 @@ namespace BastArt.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("Base64Pic")
-                        .HasColumnType("text");
+                    b.Property<long>("Base64Pic")
+                        .HasColumnType("bigint");
 
                     b.Property<int?>("PortfolioId")
                         .HasColumnType("integer");

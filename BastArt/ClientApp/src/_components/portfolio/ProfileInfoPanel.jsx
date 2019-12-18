@@ -10,6 +10,9 @@ const ProfileInfoWrapper = styled.div`
     margin-right: auto;
     /* border: 2px white solid; */
     padding: 10px;
+    position:absolute;
+    bottom:2%;
+    left: 40%; 
 `
 
 const Paragraph = styled.p`
@@ -19,29 +22,27 @@ const Paragraph = styled.p`
 
 const TopDiv = styled.div`
     height: 50%;
-    border: 2px white solid;
+    /* border: 2px white solid; */
 `
 const BotDiv = styled.div`
     height: 50%;
-    border: 2px white solid;
-    
+    /* border: 2px white solid; */
 `
 
-class ProfileInfoPanel extends Component {
+export class ProfileInfoPanel extends Component {
     render() {
+        const {username, firstName, lastName} = this.props.user;
         return (
             <ProfileInfoWrapper className="container screen">
                 <TopDiv>
                     <Avatar />
                 </TopDiv>
                 <BotDiv>
-                    <Paragraph>Baraciak</Paragraph>
-                    <Paragraph >Aleksander Nowicki</Paragraph>
+                    <Paragraph>{username}</Paragraph>
+                    <Paragraph>{firstName + " " +lastName}</Paragraph>
                 </BotDiv>
            
             </ProfileInfoWrapper>
         )
     }
 }
-
-export default ProfileInfoPanel

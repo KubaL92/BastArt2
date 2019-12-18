@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {ArtworksTiles} from '../common/ArtworksTiles';
 
-class ArtworksScreen extends Component{
+export class Artworks extends Component{
 
     render(){
         const list = [200, 220, 180, 190 , 200, 220, 210 ,170, 200, 220, 180, 190 , 200, 220, 210 ,170];
@@ -10,20 +10,16 @@ class ArtworksScreen extends Component{
             return (
                  <div key={index} className="image-element m-1">
                     {/* <Link to={'/artist/:artistId'}> */}
-                        <img src={"https://picsum.photos/191/" + height}/>
+                        <img src={"https://picsum.photos/197/" + height}/>
                     {/* </Link> */}
                  </div>
              );
          });
 
         return(
-            <div className="screen container" id="artworks-screen">
-                <span><h2 className="text-justify">Sample Artworks</h2></span>
-                <ArtworksTiles>
-                    {childElements}
-                </ArtworksTiles>
-            </div>
+            <ArtworksTiles>
+                {childElements}
+            </ArtworksTiles>
         );
     }
 }
-export default ArtworksScreen;

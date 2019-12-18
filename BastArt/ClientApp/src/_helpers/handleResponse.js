@@ -1,6 +1,3 @@
-import { authService } from '../_services/authService';
-import history from './history'
-
 export function handleResponse(response) {
     return response.text().then(text => {
 
