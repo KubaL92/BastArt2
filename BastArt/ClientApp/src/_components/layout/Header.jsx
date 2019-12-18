@@ -18,6 +18,7 @@ class Header extends Component{
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href={'/login'}>Login</a>
                         <a class="dropdown-item" href={'/register'}>Register</a>
+                        <a class="dropdown-item" href={'/new-project'}>New Project</a>
                     </div>
                  </div>
             </nav>

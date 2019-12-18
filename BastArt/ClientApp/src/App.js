@@ -4,6 +4,7 @@ import { Layout } from './_components/Layout';
 import Home from './Views/Home';
 import Login from './Views/Login';
 import Register from './Views/Register';
+import NewProj from './Views/NewProj';
 
 import './_static/css/app.css';
 
@@ -17,6 +18,7 @@ export default class App extends Component {
                     <Route exact path='/' component={Home} />
                     <Route exact path='/login' component={Login} />
                     <Route exact path='/register' component={Register} />
+                    <Route exact path='/new-project' component={NewProj} />
                 </Switch>
             </Layout>
         );
