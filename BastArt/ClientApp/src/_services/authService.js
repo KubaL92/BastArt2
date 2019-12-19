@@ -16,12 +16,12 @@ async function login(accountData) {
     sessionStorage.setItem('token', response.token);
     store.dispatch(userActions.addRole(response.role));
     store.dispatch(userActions.add(response.user));
-    setTimeout(function(){ history.push('/') }, 500)
+    history.push('/');
 }
 
 async function register(userData) {
     const response = await api.post('https://localhost:44334/api/authorization/register', userData);
-    setTimeout(function(){ history.push('/login') }, 500)
+    history.push('/login');
 }
 
 function logout() {
