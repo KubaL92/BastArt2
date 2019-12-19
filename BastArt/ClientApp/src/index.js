@@ -1,5 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bs-stepper/dist/css/bs-stepper.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router';
