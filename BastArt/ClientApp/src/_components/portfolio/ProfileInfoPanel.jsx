@@ -31,11 +31,11 @@ const BotDiv = styled.div`
 
 export class ProfileInfoPanel extends Component {
     render() {
-        const {username, firstName, lastName} = this.props.user;
+        const {username, firstName, lastName, profile} = this.props.user;
         return (
             <ProfileInfoWrapper className="container screen">
                 <TopDiv>
-                    <Avatar />
+                    <Avatar profile={profile}/>
                 </TopDiv>
                 <BotDiv>
                     <Paragraph>{username}</Paragraph>

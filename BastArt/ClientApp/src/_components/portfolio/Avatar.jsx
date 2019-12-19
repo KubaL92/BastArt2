@@ -21,7 +21,7 @@ export class Avatar extends Component {
     render() {
         return (
             <AvatarWrapper>
-                <AvatarImg src="https://picsum.photos/140/140" alt="avatar"/>
+                <AvatarImg src={"data:image/jpg;base64," + this.props.profile.avatar } alt="avatar"/>
             </AvatarWrapper>
         )
     }

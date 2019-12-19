@@ -49,6 +49,7 @@ namespace BastArt.Controllers
             var portfolio = await _context.Portfolios
                                 .Include(p => p.User)
                                 .Include(p => p.Graphics)
+                                .Include(p => p.User.Profile)
                                 .FirstOrDefaultAsync(p => p.User.Id == id);
 
             if (portfolio == null)
