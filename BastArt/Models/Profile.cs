@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 
 namespace BastArt.Models
 {
-    public class Portfolio
+    public class Profile
     {
         public int Id { get; set; }
-        public User User { get; set; }
-        public List<Graphic> Graphics { get; set; }
+        public string About { get; set; }
+        public string Avatar { get; set; }
+        public string Background { get; set; }
     }
 }

@@ -5,6 +5,7 @@ import { Navigation } from '../_components/portfolio/Navigation'
 
 import {getByUserId} from '../_helpers/portfoliosApi';
 import {connect} from 'react-redux';
+import TagBox from '../_components/portfolio/TagBox';
 
 
 class Portfolio extends Component {
@@ -16,7 +17,6 @@ class Portfolio extends Component {
     
     componentDidMount() {
         const {id, currentUser} = this.props;
-        console.log(id);
         if(currentUser !== null){
             if(id === currentUser.id)
             this.setState({owner: true});
@@ -29,14 +29,20 @@ class Portfolio extends Component {
         return (
             <React.Fragment>
                 <div className="screen">
-                    
                     {this.state.portfolioFetched
                         ?<ProfileHeader user={this.state.portfolio.user}/>
-                        :<p className="container">Loading...</p>
+                        :<p>Loading...</p>
+                    }
+                </div>
+                <div className="screen">
+                    {this.state.portfolioFetched
+                        ?<TagBox/>
+                        :<p>Loading...</p>
                     }
                 </div>
                 <div className="screen">
                     <Navigation />
+                    <hr />
                     {this.state.portfolioFetched
                         ?<Artworks graphics={this.state.portfolio.graphics}/>
                         :<p>Loading...</p>
