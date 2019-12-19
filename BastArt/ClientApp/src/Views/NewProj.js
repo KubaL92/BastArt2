@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import Stepper from 'bs-stepper'
+import { Step1 } from '../_components/Steps/Step1';
+import { Step2 } from '../_components/Steps/Step2';
+import { Step3 } from '../_components/Steps/Step3';
+import { Step4 } from '../_components/Steps/Step4';
 
 
 class NewProj extends Component {
@@ -19,6 +23,8 @@ class NewProj extends Component {
 
     onSubmit(e) {
         e.preventDefault()
+        const data = new FormData(event.target);
+        //data.get
     }
 
     render() {
@@ -57,10 +63,7 @@ class NewProj extends Component {
                     <div class="bs-stepper-content">
                         <form onSubmit={this.onSubmit}>
                             <div id="test-l-1" class="content">
-                                <div class="form-group">
-                                    <label>Zaznacz wszystkie kategorie jakie Cię interesują</label>
-                                    <div> DUPA DUPA DUPA</div>
-                                </div>
+                                <Step1 />
                                 <button class="btn btn-primary" onClick={() => this.stepper.next()}>Next</button>
                             </div>
                             <div id="test-l-2" class="content">

@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 
 class Home extends Component {
     render() {
@@ -9,7 +10,7 @@ class Home extends Component {
                 <br />
                     Communicate, cooperate and collaborate!</h5>
                 <br />
-                <a href="#" className="button">Start new project</a>
+                <Link className="button" to={'/new-project'}>Start new project</Link>
             </div>
             )
     }
