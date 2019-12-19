@@ -4,21 +4,25 @@ import { Step1 } from '../_components/Steps/Step1';
 import { Step2 } from '../_components/Steps/Step2';
 import { Step3 } from '../_components/Steps/Step3';
 import { Step4 } from '../_components/Steps/Step4';
-
+import { getAll } from '../_helpers/tagsApi'
 
 class NewProj extends Component {
-    constructor() {
-        super();
-        this.state = {
-            name: 'React',
-        };
+    state = {
+        tags: [],
+        fetched: false
     }
 
-    componentDidMount() {
+    componentDidMount=()=> {
         this.stepper = new Stepper(document.querySelector('#stepper1'), {
             linear: false,
             animation: true
         })
+        this.fetchTags()
+    }
+
+    fetchTags = async () => {
+        const tags = await getAll()
+        this.setState({ tags, fetched : true })
     }
 
     onSubmit(e) {
@@ -63,7 +67,10 @@ class NewProj extends Component {
                     <div class="bs-stepper-content">
                         <form onSubmit={this.onSubmit}>
                             <div id="test-l-1" class="content">
-                                <Step1 />
+                                {this.state.fetched
+                                    ? < Step1 tags={this.state.tags} />
+                                    : <p>Loading</p>
+                                }
                                 <button class="btn btn-primary" onClick={() => this.stepper.next()}>Next</button>
                             </div>
                             <div id="test-l-2" class="content">

@@ -3,15 +3,17 @@ using System;
 using BastArt.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BastArt.Migrations
 {
     [DbContext(typeof(BastArtDbContext))]
-    partial class BastArtDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191219134205_TagsAdded")]
+    partial class TagsAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BastArt.Models;
 using Microsoft.EntityFrameworkCore;
+using BastArt.Models.Data;
 
 namespace BastArt.Database
 {
@@ -16,6 +17,9 @@ namespace BastArt.Database
         public DbSet<Graphic> Graphics { get; set; }
         public DbSet<Portfolio> Portfolios { get; set; }  
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<PortfolioTag> PortfolioTags { get; set; }
+
 
 
         public BastArtDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
