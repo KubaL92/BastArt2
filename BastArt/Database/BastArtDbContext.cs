@@ -30,7 +30,6 @@ namespace BastArt.Database
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder.UseNpgsql("Host=localhost;Database=BastArtDB;Username=postgres;Password=postgres");
 
-
         //for sample data
         //        public BastArtDbContext()
         //        {

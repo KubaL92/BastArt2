@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BastArt.Database;
@@ -50,7 +48,15 @@ namespace BastArt.Controllers
                                 .Include(p => p.User)
                                 .Include(p => p.Graphics)
                                 .Include(p => p.User.Profile)
+                                .Include(p => p.Tags)
+                                    .ThenInclude(p => p.Tag)
                                 .FirstOrDefaultAsync(p => p.User.Id == id);
+
+            //tags related to portfolio
+//            var tags = await _context.PortfolioTags
+//                                    .Include(p => p.Tag)
+//                                    .Where(p => p.Portfolio.Id == id)
+//                                    .ToListAsync();
 
             if (portfolio == null)
             {   

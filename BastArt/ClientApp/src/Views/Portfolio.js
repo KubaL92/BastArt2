@@ -19,7 +19,8 @@ class Portfolio extends Component {
     state={
         portfolioFetched: false,
         owner: false,
-        portfolio: [],
+        portfolio: {},
+        // tags: [],
         show: 'Artworks'
     }
     
@@ -52,7 +53,7 @@ class Portfolio extends Component {
                 </div>
                 <div className="screen">
                     {portfolioFetched
-                        ?<TagBox/>
+                        ?<TagBox tags={portfolio.tags}/>
                         :<p>Loading...</p>
                     }
                 </div>
@@ -75,9 +76,12 @@ class Portfolio extends Component {
     }
 
     fetchPortfolio = async (id) =>{
-        const portfolio = await getByUserId(id);
-        console.log(portfolio, "portfolio");
-        this.setState({portfolio, portfolioFetched: true});
+        const portfolioData = await getByUserId(id);
+        console.log(portfolioData, "portfolio");
+        this.setState({
+            portfolio: portfolioData,
+            portfolioFetched: true
+        });
     } 
 }
 

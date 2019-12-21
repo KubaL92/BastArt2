@@ -3,17 +3,16 @@ import {Badge} from 'reactstrap';
 
 class TagBox extends Component {
     render() {
+        const {tags} = this.props;
+        console.log(tags);
         return (
-            <div>
-                <Badge color="light" className="m-1">Primary</Badge>
-                <Badge color="light" className="m-1">Secondary</Badge>
-                <Badge color="light" className="m-1">Success</Badge>
-                <Badge color="light" className="m-1">Danger</Badge>
-                <Badge color="light" className="m-1">Warning</Badge>
-                <Badge color="light" className="m-1">Info</Badge>
-                <Badge color="light" className="m-1">Light</Badge>
-                <Badge color="light "className="m-1">Dark</Badge>
-            </div>
+            <React.Fragment>
+                {tags.length > 0
+                    ?tags.map((tag, index) => <Badge key={index} color="light" className="m-1">{tag.tag.name}</Badge>)
+                    :<p className="text-muted">Nothing to see here!</p>
+                }
+
+            </React.Fragment>
         )
     }
 }
