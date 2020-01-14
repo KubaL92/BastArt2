@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import { Route ,Switch} from 'react-router';
 import { Layout } from './_components/Layout';
 import Home from './Views/Home';
@@ -23,7 +23,7 @@ export default class App extends Component {
 
     render () {
         return (
-            <Layout>
+            <Layout >
                 <Switch>
                     <Route exact path='/' component={Home} />
                     <Route exact path='/login' component={Login} />

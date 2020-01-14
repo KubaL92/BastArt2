@@ -5,24 +5,50 @@ import { Step2 } from '../_components/Steps/Step2';
 import { Step3 } from '../_components/Steps/Step3';
 import { Step4 } from '../_components/Steps/Step4';
 import { getAll } from '../_helpers/tagsApi'
+import { getByUserId } from "../_helpers/portfoliosApi";
 
 class NewProj extends Component {
     state = {
         tags: [],
-        fetched: false
+        tagsFetched: false,
+        searchTags:[],
+        newProj: {
+
+        }
+    }
+//step1
+    handleAddTag = (tag) => {
+        const searchTags = this.state.searchTags;
+        searchTags.push(tag);
+        this.setState({searchTags});
+
+        // this.setState({searchTags: {...searchTags, tag}})
     }
 
-    componentDidMount=()=> {
+    handleRemoveTag = () =>{
+
+    }
+
+    handleAddArtist(artist){
+         const newProj = this.state.newProj;
+         //2.add artist to new proj
+        //  newProj.add(artist)
+         //3.set state
+         this.setState({newProj});
+    }
+    
+    componentDidMount = () => {
         this.stepper = new Stepper(document.querySelector('#stepper1'), {
             linear: false,
             animation: true
         })
+
         this.fetchTags()
     }
 
     fetchTags = async () => {
         const tags = await getAll()
-        this.setState({ tags, fetched : true })
+        this.setState({ tags, tagsFetched : true })
     }
 
     onSubmit(e) {
@@ -44,7 +70,9 @@ class NewProj extends Component {
                         </div>
                         <div class="line"></div>
                         <div class="step" data-target="#test-l-2">
-                            <button class="step-trigger">
+                            <button class="step-trigger"
+                            onClick={this.getArtistsByTag}
+                            >    
                                 <span class="bs-stepper-circle">2</span>
                                 <span class="bs-stepper-label">Wybierz artystę</span>
                             </button>
@@ -67,8 +95,8 @@ class NewProj extends Component {
                     <div class="bs-stepper-content">
                         <form onSubmit={this.onSubmit}>
                             <div id="test-l-1" class="content">
-                                {this.state.fetched
-                                    ? < Step1 tags={this.state.tags} />
+                                {this.state.tagsFetched
+                                    ? < Step1 onAddTag={this.handleAddTag} tags={this.state.tags} />
                                     : <p>Loading</p>
                                 }
                                 <button class="btn btn-primary" onClick={() => this.stepper.next()}>Next</button>
@@ -92,13 +120,15 @@ class NewProj extends Component {
                                     <label>Zaznacz termin ostateczny oraz podaj sugerowaną stawkę (opcjonalnie)</label>
                                     <div> DUPA DUPA DUPA</div>
                                 </div>
-                                <button type="submit" class="btn btn-primary mt-5">Submit</button>
+                                <button type="submit" class="btn btn-primary mt-5" onClick={this.saveData}>Submit</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         );
+    }
+    saveData = () => {
     }
 }
 export default NewProj;
